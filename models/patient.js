@@ -11,7 +11,10 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       this.hasOne(models.User)
-      this.hasMany(models.MedicalRecord, { as: 'medicalRecord', foreignKey: 'patientId' })
+      this.hasMany(models.MedicalRecord, { as: {
+        singular: 'medicalRecord',
+        plural: 'medicalRecords'
+      }, foreignKey: 'patientId' })
     }
   }
   Patient.init({

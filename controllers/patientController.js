@@ -4,25 +4,28 @@ const { Patient, MedicalRecord, Doctor } = require('../models')
 async function getAllMedicalRecords(req, res) {
   const patientId = get(req, 'params.id', '')
   try {
-    const medicalRecords = await Patient.findAll({
+    const patient = await Patient.findByPk(patientId, {
+      attributes: {
+        exclude: ['createdAt', 'updatedAt'],
+      },
       include: {
         model: MedicalRecord,
-        as: 'medicalRecord',
+        as: 'medicalRecords',
         required: false,
         include: {
           model: Doctor,
-          as: 'doctor'
+          as: 'doctor',
+          attributes: {
+            exclude: ['createdAt', 'updatedAt'],
+          },
         },
         attributes: {
-          exclude: ['DoctorId', 'PatientId']
+          exclude: ['DoctorId', 'PatientId', 'createdAt', 'updatedAt']
         }
-      },
-      where: {
-        id: patientId
       }
     })
     res.send({
-      medicalRecords
+      patient
     })
   } catch (error) {
     res.status(500).send({
