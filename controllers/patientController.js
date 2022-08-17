@@ -7,9 +7,14 @@ async function getAllMedicalRecords(req, res) {
     const medicalRecords = await Patient.findAll({
       include: {
         model: MedicalRecord,
+        as: 'medicalRecord',
         required: false,
         include: {
-          model: Doctor
+          model: Doctor,
+          as: 'doctor'
+        },
+        attributes: {
+          exclude: ['DoctorId', 'PatientId']
         }
       },
       where: {
