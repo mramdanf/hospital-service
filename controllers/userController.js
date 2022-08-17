@@ -3,7 +3,7 @@ async function getAll(req, res) {
   try {
     const users = await User.findAll({
       attributes: {
-        exclude: ['password'],
+        exclude: ['password', 'DoctorId', 'PatientId'],
       },
       include: [
         {
