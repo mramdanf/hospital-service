@@ -1,8 +1,8 @@
-const get = require('lodash/get')
-const { Patient, MedicalRecord, Doctor } = require('../models')
+const get = require('lodash/get');
+const { Patient, MedicalRecord, Doctor } = require('../models');
 
 async function getAllMedicalRecords(req, res) {
-  const patientId = get(req, 'params.id', '')
+  const patientId = get(req, 'params.id', '');
   try {
     const patient = await Patient.findByPk(patientId, {
       attributes: {
@@ -20,20 +20,20 @@ async function getAllMedicalRecords(req, res) {
           },
         },
         attributes: {
-          exclude: ['DoctorId', 'PatientId', 'createdAt', 'updatedAt']
-        }
-      }
-    })
+          exclude: ['DoctorId', 'PatientId', 'createdAt', 'updatedAt'],
+        },
+      },
+    });
     res.send({
-      patient
-    })
+      patient,
+    });
   } catch (error) {
     res.status(500).send({
-      message: error.message
-    })
+      message: error.message,
+    });
   }
 }
 
 module.exports = {
-  getAllMedicalRecords
-}
+  getAllMedicalRecords,
+};

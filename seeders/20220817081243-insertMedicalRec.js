@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = {
-  async up (queryInterface, Sequelize) {
+  async up(queryInterface) {
     /**
      * Add seed commands here.
      *
@@ -10,10 +10,8 @@ module.exports = {
      *   name: 'John Doe',
      *   isBetaMember: false
      * }], {});
-    */
-   return queryInterface.bulkInsert(
-    'MedicalRecords',
-    [
+     */
+    return queryInterface.bulkInsert('MedicalRecords', [
       {
         id: 1,
         diagnos: 'lambung radang',
@@ -21,23 +19,19 @@ module.exports = {
         doctorId: 1,
         createdAt: new Date(),
         updatedAt: new Date(),
-      }
-    ]
-   )
+      },
+    ]);
   },
 
-  async down (queryInterface, Sequelize) {
+  async down(queryInterface) {
     /**
      * Add commands to revert seed here.
      *
      * Example:
      * await queryInterface.bulkDelete('People', null, {});
      */
-     return queryInterface.bulkDelete(
-      'MedicalRecords',
-      {
-        id: 1,
-      }
-     )
-  }
+    return queryInterface.bulkDelete('MedicalRecords', {
+      id: 1,
+    });
+  },
 };

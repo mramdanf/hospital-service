@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = {
-  async up (queryInterface, Sequelize) {
+  async up(queryInterface) {
     /**
      * Add seed commands here.
      *
@@ -10,22 +10,18 @@ module.exports = {
      *   name: 'John Doe',
      *   isBetaMember: false
      * }], {});
-    */
-    return queryInterface.bulkInsert(
-      'Doctors',
-      [
+     */
+    return queryInterface
+      .bulkInsert('Doctors', [
         {
           id: 1,
           name: 'ramdan',
           createdAt: new Date(),
           updatedAt: new Date(),
-        }
-      ]
-    )
-    .then(() => {
-      return queryInterface.bulkInsert(
-        'Users',
-        [
+        },
+      ])
+      .then(() =>
+        queryInterface.bulkInsert('Users', [
           {
             id: 1,
             doctorId: 1,
@@ -33,32 +29,26 @@ module.exports = {
             password: '123',
             createdAt: new Date(),
             updatedAt: new Date(),
-          }
-        ]
-      )
-    })
+          },
+        ])
+      );
   },
 
-  async down (queryInterface, Sequelize) {
+  async down(queryInterface) {
     /**
      * Add commands to revert seed here.
      *
      * Example:
      * await queryInterface.bulkDelete('People', null, {});
      */
-     return queryInterface.bulkDelete(
-      'Doctors',
-      {
-        id: 1
-      }
-    )
-    .then(() => {
-      return queryInterface.bulkDelete(
-        'Users',
-        {
-          id: 1
-        }
-      )
-    });
-  }
+    return queryInterface
+      .bulkDelete('Doctors', {
+        id: 1,
+      })
+      .then(() =>
+        queryInterface.bulkDelete('Users', {
+          id: 1,
+        })
+      );
+  },
 };

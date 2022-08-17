@@ -1,4 +1,4 @@
-require('dotenv').config()
+require('dotenv').config();
 
 module.exports = {
   development: {
@@ -9,7 +9,7 @@ module.exports = {
     port: 3306,
     dialect: 'mysql',
     dialectOptions: {
-      bigNumberStrings: true
-    }
+      bigNumberStrings: true,
+    },
   },
 };

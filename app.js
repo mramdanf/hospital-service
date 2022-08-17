@@ -1,14 +1,15 @@
-const express = require('express')
-const { userRoutes, patientRoutes, doctorRoutes } = require('./routes')
-const port = 3000
-const app = express()
+const express = require('express');
+const { userRoutes, patientRoutes, doctorRoutes } = require('./routes');
 
-app.use(express.json())
+const port = 3000;
+const app = express();
 
-app.use('/users', userRoutes)
-app.use('/patients', patientRoutes)
-app.use('/doctors', doctorRoutes)
+app.use(express.json());
+
+app.use('/users', userRoutes);
+app.use('/patients', patientRoutes);
+app.use('/doctors', doctorRoutes);
 
 app.listen(port, () => {
-  console.log(`app listening on http://localhost:${port}`)
-})
+  console.log(`app listening on http://localhost:${port}`);
+});

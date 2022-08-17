@@ -1,6 +1,6 @@
-const route = require('express').Router()
-const { patientController } = require('../controllers')
+const route = require('express').Router();
+const { patientController } = require('../controllers');
 
-route.get('/:id/medical-records', patientController.getAllMedicalRecords)
+route.get('/:id/medical-records', patientController.getAllMedicalRecords);
 
-module.exports = route
+module.exports = route;
