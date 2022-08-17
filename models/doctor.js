@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       this.hasOne(models.User);
-      this.hasMany(models.MedialRecord)
+      this.hasMany(models.MedicalRecord)
     }
   }
   Doctor.init({
