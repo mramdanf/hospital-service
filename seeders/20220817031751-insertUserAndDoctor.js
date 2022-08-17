@@ -12,12 +12,11 @@ module.exports = {
      * }], {});
     */
     return queryInterface.bulkInsert(
-      'Users',
+      'Doctors',
       [
         {
           id: 1,
-          email: 'ramdan@gmail.com',
-          password: '123',
+          name: 'ramdan',
           createdAt: new Date(),
           updatedAt: new Date(),
         }
@@ -25,12 +24,13 @@ module.exports = {
     )
     .then(() => {
       return queryInterface.bulkInsert(
-        'Doctors',
+        'Users',
         [
           {
             id: 1,
-            userId: 1,
-            name: 'ramdan',
+            doctorId: 1,
+            email: 'ramdan@gmail.com',
+            password: '123',
             createdAt: new Date(),
             updatedAt: new Date(),
           }
@@ -46,15 +46,15 @@ module.exports = {
      * Example:
      * await queryInterface.bulkDelete('People', null, {});
      */
-    return queryInterface.bulkDelete(
-      'Users',
+     return queryInterface.bulkDelete(
+      'Doctors',
       {
         id: 1
       }
     )
     .then(() => {
       return queryInterface.bulkDelete(
-        'Doctors',
+        'Users',
         {
           id: 1
         }

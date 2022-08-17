@@ -11,31 +11,31 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
     */
-   return queryInterface.bulkInsert(
-    'Users',
-    [
-      {
-        id: 2,
-        email: 'rudi@gmail.com',
-        password: '123',
-        createdAt: new Date(),
-        updatedAt: new Date(),
-      }
-    ]
-   )
-   .then(() => {
     return queryInterface.bulkInsert(
       'Patients',
       [
         {
-          id: 2,
-          userId: 2,
+          id: 1,
           name: 'Rudi',
           createdAt: new Date(),
           updatedAt: new Date(),
         }
       ]
     )
+   .then(() => {
+    return queryInterface.bulkInsert(
+      'Users',
+      [
+        {
+          id: 2,
+          patientId: 1,
+          email: 'rudi@gmail.com',
+          password: '123',
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        }
+      ]
+     )
    })
   },
 
@@ -47,18 +47,18 @@ module.exports = {
      * await queryInterface.bulkDelete('People', null, {});
      */
      return queryInterface.bulkDelete(
-      'Users',
+      'Patients',
       {
-        id: 2,
+        id: 2
       }
-     )
-     .then(() => {
+    )
+    .then(() => {
       return queryInterface.bulkDelete(
-        'Patients',
+        'Users',
         {
-          id: 2
+          id: 2,
         }
       )
-     })
+    })
   }
 };
