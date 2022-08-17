@@ -1,5 +1,5 @@
 const get = require('lodash/get')
-const { Patient, MedicalRecord } = require('../models')
+const { Patient, MedicalRecord, Doctor } = require('../models')
 
 async function getAllMedicalRecords(req, res) {
   const patientId = get(req, 'params.id', '')
@@ -8,6 +8,12 @@ async function getAllMedicalRecords(req, res) {
       include: {
         model: MedicalRecord,
         required: false,
+        include: {
+          model: Doctor
+        }
+      },
+      where: {
+        id: patientId
       }
     })
     res.send({
