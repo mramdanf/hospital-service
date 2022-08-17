@@ -1,4 +1,4 @@
-const { User, Doctor } = require('../models')
+const { User, Doctor, Patient } = require('../models')
 async function getAll(req, res) {
   try {
     const users = await User.findAll({
@@ -8,12 +8,20 @@ async function getAll(req, res) {
       include: [
         {
           model: Doctor,
-          require: false,
+          required: false,
           as: 'doctor',
           attributes: {
             exclude: ['UserId']
           }
-        }
+        },
+        {
+          model: Patient,
+          require: false,
+          as: 'patient',
+          attributes: {
+            exclude: ['UserId']
+          }
+        },
       ]
     })
     res.send({
